@@ -7,11 +7,11 @@
 
 ## Задачи
 ### Задача 1.  LinearLayout
-![Картинка на задание Var. №1](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
+![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 ```kotlin
 fun test_code_block_sqr(x: Double): Double = x * x
 ```
-![Картинка на задание Var. №2](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
+![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
 ### Решение дополнительных вопросов (Указаний) _Задачи 1. LinearLayout_
 * Изучите LinearLayout по документации от производителя ОС: https://developer.android.com/guide/topics/ui/layout/linear. Опишите свои наблюдения в отчете.
@@ -24,9 +24,9 @@ fun test_code_block_sqr(x: Double): Double = x * x
 4.
 
 ### Задача 2. ConstraintLayout
-![Картинка на задание Var. №1](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
+![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 
-![Картинка на задание Var. №2](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
+![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
 ### Решение дополнительных вопросов (Указаний) _Задачи 2. ConstraintLayout_
 * Изучите ConstraintLayout по документации от производителя ОС: https://developer.android.com/training/constraint-layout. Опишите свои наблюдения в отчете.
@@ -37,7 +37,7 @@ fun test_code_block_sqr(x: Double): Double = x * x
 3.
 
 ### Задача 3. ConstraintLayout
-![Картинка на задание](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/constraint/lab01_constraint_v01.png "Картинка на задание")
+![Картинка на задание](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/constraint/lab01_constraint_v01.png "Картинка на задание")
 
 ### Рассмотрение дополнительных знаний о _Задаче 3. ConstraintLayout_
 * test
