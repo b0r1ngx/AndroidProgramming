@@ -5,7 +5,15 @@
 * Изучить основные возможности и свойства LinearLayout
 * Изучить основные возможности и свойства ConstraintLayout
 
-## Решение дополнительных вопросов (Указаний) _Задачи 1. LinearLayout_
+## Задачи
+### Задача 1.  LinearLayout
+![Картинка на задание Var. №1](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
+```kotlin
+fun test_code_block_sqr(x: Double): Double = x * x
+```
+![Картинка на задание Var. №2](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
+
+### Решение дополнительных вопросов (Указаний) _Задачи 1. LinearLayout_
 * Изучите LinearLayout по документации от производителя ОС: https://developer.android.com/guide/topics/ui/layout/linear. Опишите свои наблюдения в отчете.
 1.
 * Обратите внимание на атрибуты layout_weight, gravity, layout_gravity, orientation, layout_height, layout_width. Опишите их поведение и использование при решении задач в отчете (прим.: могут для решения задач могут потребоваться на все атрибуты).
@@ -15,7 +23,12 @@
 * Многие задачи можно решить разными способами. Предложите два решения хотя бы для одной из задач.
 4.
 
-## Решение дополнительных вопросов (Указаний) _Задачи 2. ConstraintLayout_
+### Задача 2. ConstraintLayout
+![Картинка на задание Var. №1](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
+
+![Картинка на задание Var. №2](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
+
+### Решение дополнительных вопросов (Указаний) _Задачи 2. ConstraintLayout_
 * Изучите ConstraintLayout по документации от производителя ОС: https://developer.android.com/training/constraint-layout. Опишите свои наблюдения в отчете.
 1.
 * Обратите внимание на атрибут layout_constraintDimensionRatio, layout_constraintHorizontal_weight, layout_constraintVertical_weight (прим.: может не использоваться для решения задач).
@@ -23,7 +36,10 @@
 * Изучите получившийся XML код. Докажите, что он не содержит избыточных тегов и атрибутов 
 3.
 
-## Рассмотрение дополнительных знаний о _Задаче 3. ConstraintLayout_
+### Задача 3. ConstraintLayout
+![Картинка на задание](//https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/constraint/lab01_constraint_v01.png "Картинка на задание")
+
+### Рассмотрение дополнительных знаний о _Задаче 3. ConstraintLayout_
 * test
 
 ## Вывод
