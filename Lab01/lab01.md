@@ -10,45 +10,49 @@
 
 ![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 
-Скриншот моей реализации *Задачи 1* в Android Studio. 
+Скриншот моей реализации *Задачи 1* в Android Studio.
+
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/11.png "Реализация в Android Studio")
 ```kotlin
 fun test_code_block_sqr(x: Double): Double = x * x
 ```
 ![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
-Скриншот моей реализации *Задачи 2* в Android Studio. 
+Скриншот моей реализации *Задачи 2* в Android Studio.
+
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/12.png "Реализация в Android Studio")
 
 ### Решение дополнительных вопросов (Указаний) _Задачи 1. LinearLayout_
 * 1) Изучите LinearLayout по документации от производителя ОС: https://developer.android.com/guide/topics/ui/layout/linear. Опишите свои наблюдения в отчете.
-    LinearLayout - выравнивает все дочерние объекты в одном направлении, по вертикали или горизонтали. Направление задается при помощи атрибута android:orientation
+    1.  LinearLayout - выравнивает все дочерние объекты в одном направлении, по вертикали или горизонтали. Направление задается при помощи атрибута android:orientation
 
 * 2) Обратите внимание на атрибуты layout_weight, gravity, layout_gravity, orientation, layout_height, layout_width. Опишите их поведение и использование при решении задач в отчете (прим.: могут для решения задач могут потребоваться на все атрибуты).
-    Layout_weight - назначает сколько места элемент занимает на экране, по умолчанию равен 0.
-    gravity - атрибут позиционирования.
-    Layout_gravity - позиционирование содержимого относительно родителя.
-    Layout_height, Layout_width – определяют высоту и ширину.
+    2.1. Layout_weight - назначает сколько места элемент занимает на экране, по умолчанию равен 0.
+    2.2. gravity - атрибут позиционирования.
+    2.3. Layout_gravity - позиционирование содержимого относительно родителя.
+    2.4. Layout_height, Layout_width – определяют высоту и ширину.
     Существуют различные типы последних атрибутов:
    * [match_parent] - размеры удовлетворяющие размеры родителя,
    * [wrap_content] - размеры зависят от содержимого объекта.
 
 * 3) Изучите получившийся XML код. Докажите, что он не содержит избыточных тегов и атрибутов (например, продемонстрируйте, что удаление любого из тегов/атрибутов приведет к другой верстке)
-    Подлежит демонстрации путем практической проверки: удаление того или иного аттрибута (тэга).
+    3. Подлежит демонстрации путем практической проверки: удаление того или иного аттрибута (тэга).
 
 * 4) Многие задачи можно решить разными способами. Предложите два решения хотя бы для одной из задач.
-    1. С помощью элемента Space можно сделать другой вариант макета. Space разделяет макет как самостоятельный элемент. 
-    2. С помощью layout_margin, с его отступом от других элементов макета.
+    4.1. С помощью элемента Space можно сделать другой вариант макета. Space разделяет макет как самостоятельный элемент. 
+    4.2. С помощью layout_margin, с его отступом от других элементов макета.
 
 ### Задача 2. ConstraintLayout
 ![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 
-Скриншот моей реализации *Задачи 1* в Android Studio. 
+Скриншот моей реализации *Задачи 1* в Android Studio.
+
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/21.png "Реализация в Android Studio")
 
 ![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
-Скриншот моей реализации *Задачи 2* в Android Studio. 
+Скриншот моей реализации *Задачи 2* в Android Studio.
+
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/22.png "Реализация в Android Studio")
 
 ### Решение дополнительных вопросов (Указаний) _Задачи 2. ConstraintLayout_
@@ -65,6 +69,7 @@ fun test_code_block_sqr(x: Double): Double = x * x
 Так как никаких дополнительных требований, по ходу выполнения задания не было задано, определим их сами:
 1. Из требуемого задания, данного на картинке по разделению экрана, очевидно то, что он должен быть разделен на некоторые вертикальные и горизонтальные границы, в которых в последствии должны быть размещены блоки на указанных местах.
 2. Не сказано должно ли реализуемое представление, данное на картинке, отвечать всем требованиям пропорций, так что скажем, что нет не должно, и пропорции разделения, будут определены (взяты) и ровно зависить от разрешения того устройства, на котором мы будем запускать данный ресурс layout'а.
+
 ![Картинка на задание](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/constraint/lab01_constraint_v01.png "Картинка на задание")
 
 В задании был использован объект Guideline для требуемого задания позиций элементов.
