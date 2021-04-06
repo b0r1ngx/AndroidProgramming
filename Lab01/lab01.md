@@ -10,14 +10,16 @@
 #### Задание
 Создайте layout ресурсы для следующих макетов экрана с использованием LinearLayout.
 
+Картинка, на задание 1-го варианта требуемого исполнения.
+
 ![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 
 Скриншот моей реализации *Задачи 1* в Android Studio.
 
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/11.png "Реализация в Android Studio")
-```kotlin
-fun test_code_block_sqr(x: Double): Double = x * x
-```
+
+Картинка, на задание 2-го варианта требуемого исполнения.
+
 ![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
 Скриншот моей реализации *Задачи 2* в Android Studio.
@@ -53,11 +55,16 @@ fun test_code_block_sqr(x: Double): Double = x * x
 #### Задание
 Создайте layout ресурсы для следующих макетов экрана с использованием ConstraintLayout.
 
+
+Картинка, на задание 1-го варианта требуемого исполнения.
+
 ![Картинка на задание Var. №1](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/01.png "Картинка на задание Var. №1")
 
 Скриншот моей реализации *Задачи 1* в Android Studio.
 
 ![Реализация в Android Studio](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab01/images/21.png "Реализация в Android Studio")
+
+Картинка, на задание 1-го варианта требуемого исполнения.
 
 ![Картинка на задание Var. №2](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/linear/10.png "Картинка на задание Var. №2")
 
@@ -81,6 +88,8 @@ fun test_code_block_sqr(x: Double): Double = x * x
 ### Задача 3. ConstraintLayout
 #### Задание
 Создайте layout ресурс для следующего макета экрана с использованием ConstraintLayout.
+
+Картинка, на задание варианта требуемого исполнения.
 
 ![Картинка на задание](https://raw.githubusercontent.com/andrei-kuznetsov/android-lectures/master/labs/01/constraint/lab01_constraint_v01.png "Картинка на задание")
 
