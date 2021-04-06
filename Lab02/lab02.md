@@ -66,7 +66,7 @@ P.S. **LogCat** - модуль, встроенный в Android Studio, в ко�
 1. Получение уведомления о звонке
 Получая звонок, и получая об этом уведомление, о том что нам звонят, мы все еще остаемся в Resumed state, что говорит о том, что уведомления не берут на себя фокус, когда появляются.
 
-![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss1com.b0r1ngx.lab01.jpg =100x20)
+![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss1com.b0r1ngx.lab01_crop.jpg "Ситуация на устройстве")
 ![LogCat](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/1.png "LogCat")
 
 2. Ответ на звонок
@@ -74,12 +74,12 @@ P.S. **LogCat** - модуль, встроенный в Android Studio, в ко�
 
 после того как мы отменяем звонок, происходит автоматическое перенаправление обратно в приложение и вызываются методы onStart() и onResume() (строки 6 и 7)
 
-![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss2com.android.incallui.jpg "Ситуация на устройстве")
+![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss2com.android.incallui_crop.jpg "Ситуация на устройстве")
 ![LogCat](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/2.png "LogCat")
 
 Автоматическая переадресация после окончания звонка обратно в приложение
 
-![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss3com.b0r1ngx.lab01.jpg "Ситуация на устройстве")
+![Ситуация на устройстве](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss3com.b0r1ngx.lab01_crop.jpg "Ситуация на устройстве")
 
 3.
 
