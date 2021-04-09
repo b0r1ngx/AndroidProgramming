@@ -220,7 +220,7 @@ rUS-v27
 
 ### Задача 4. Сохранение состояние Activity
 #### Задание
-Студент написал приложение: [continuewatch](continuewatch). Это приложение [по заданию]() должно считать, сколько секунд пользователь провел в этом приложении. (В папку с лабораторной работой, помещено рабочее, испраленною мной, приложение)
+Студент написал приложение: [continuewatch](continuewatch). Это приложение [по заданию](https://github.com/b0r1ngx/AndroidProgramming/blob/main/Lab02/lab02.md#%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-continuewatch) должно считать, сколько секунд пользователь провел в этом приложении. (В папку с лабораторной работой, помещено рабочее, испраленною мной, приложение)
 
 Найдите ошибки в этом приложении и исправьте их.  
 
@@ -233,24 +233,95 @@ rUS-v27
 ### Решение дополнительных вопросов (Указаний) для Задачи 4. Сохранение состояние Activity
 * Для поиска ошибок запустите приложение на устройстве или эмуляторе и проверьте, делает ли приложение то, что от него ожидается (фактически, необходимо выполнить ручное тестирование приложения)
 
-При запуске на устройстве, можем обнаружить следующие несоответствия, требуемые [по заданию]():
-* Прилоежение считает секунды, даже тогда, когда не отображается на экране (находится не в фокусе) (quickmark: нужно реагировать в моменты попадания в состояние Paused, а также Resumed)
+При запуске на устройстве, можем обнаружить следующие несоответствия, требуемые [по заданию](https://github.com/b0r1ngx/AndroidProgramming/blob/main/Lab02/lab02.md#%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-continuewatch):
+* Приложение считает секунды, даже тогда, когда не отображается на экране (находится не в фокусе) (quickmark: нужно реагировать в моменты попадания в состояние Paused, а также Resumed)
 * Значение счетчика не сохраняется при перезапуске приложения (перезапуск, вызов метода onDestroy(), как самим устройством, так и вручную)
 
+Добьемся исправления этих ошибок после ответа на дополнительные вопросы
 
-* Для исправления ошибок могут понадобиться методы Activity::onSaveInstanceState/onRestoreInstanceState (https://developer.android.com/guide/components/activities/activity-lifecycle#save-simple,-lightweight-ui-state-using-onsaveinstancestate)
+* Для исправления ошибок могут понадобиться методы [Activity::onSaveInstanceState/onRestoreInstanceState](https://developer.android.com/guide/components/activities/activity-lifecycle#save-simple,-lightweight-ui-state-using-onsaveinstancestate)
+
+Действительно эти методы необходимы в следующих случаях:
+* метод **onSaveInstanceState()** вызывается, когда **Activity** переходит в состояние Stopped, после вызова метода onStop(), чтобы можно было сохранить информацию о  состоянии (activity can save state information to an instance state bundle).
+* метод **onRestoreInstanceState()** вызывается, когда **Acitivity** воссоздается после того, как она была ранее уничтожена, можно восстановить сохраненное состояние экземпляра из Bundle, который система передает вашей активности ([система вызывает метод только если состояние было ранее сохраненно] (при помощи onSaveInstanceState())
 
 При анализе кода, также были замечаны недочеты, которые стоило бы исправить:
-* Не нужное перезапись текста в блоках TextView
+* Не нужная перезапись текста в блоках TextView в обоих положениях экрана
 * В горизонтальном положении, нет привязки блока TextView, поэтому он уезжает
 
+Исправления, выполненные, для корректной работы [continuewatch](continuewatch).
+
+Добавление/изменение переменных: 
+* RESUMED_STATE = true - определяет необходимость работы потока, в тот или иной момент работы приложения
+* sharedSeconds: SharedPreferences - хранение количества секунд при перезагрузке (A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them)
+* backgroundThread = Thread { while(RESUMED_STATE) } - работа потока, имитирующего таймер
+* SECONDS_KEY = "sec" - ключ, хранящий наше количество прошедших секунд, при обращении к /sharedSeconds
+
+Необходимость в переопределении **onResume(), onPause()** в том, чтобы понимать когда наше приложение находится в фокусе, а когда выходит из него, в них же добавлена следующая логика:
+```kotlin
+    override fun onResume() {
+        super.onResume()
+        RESUMED_STATE = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        RESUMED_STATE = false
+    }
+```
+
+Так же были переопределены методы, упомянутые в указаниях, и в них была добавлена следующая логика:
+```kotlin
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SECONDS_KEY, secondsElapsed)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState?.run {
+            secondsElapsed = getInt(SECONDS_KEY)
+        }
+    }
+```
+
+И для корректной работы приложения при перезапуске, также была добавлена следующая логика в **onStart(), onStop()** (возможно возникнет вопрос, почему это было сделано не в методе **onDestroy()**, при сохранении секунд, в данной функции, не корректно сохранялись секунды).
+```kotlin
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        sharedSeconds = getDefaultSharedPreferences(this)
+        secondsElapsed = sharedSeconds.getInt(SECONDS_KEY, secondsElapsed)
+        textSecondsElapsed.text = getString(R.string.SE, secondsElapsed)
+        backgroundThread.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        with (sharedSeconds.edit()) {
+            putInt(SECONDS_KEY, secondsElapsed)
+            apply()
+        }
+    }
+```
+
+Так же добавил кнопку и небольшую логику в нее, для перезапуска таймера
+```kotlin
+    fun onClick(view: View) {
+        secondsElapsed = 0
+        Toast.makeText(applicationContext, getString(R.string.reset_toast), Toast.LENGTH_SHORT).show()
+    }
+```
+
+Приложение полностью удовлетворяет своей работе, требуемой [по заданию](https://github.com/b0r1ngx/AndroidProgramming/blob/main/Lab02/lab02.md#%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-continuewatch).
 
 ## Вывод
 По ходу работы достиг все цели и решил все задачи, выше описал вывод по своей работе, пройдемся кратко по каждому пункту:
-1. a
-2. b
-3. c
-4. d
+1. Четко разобрались с жизненным циклом Activity 
+2. Углубились в работу с альтернативными ресурсами
+3. Разобрались в работе алгоритма Best-matching resource
+4. На конкретном примере, решили проблему логики, связанную с жизненным циклом Activity
 
 [Дополнительные вопросы возникшие в ходе выполнения работы и решенные мной]
 * Были включены в соответствующие раздели заданий.
