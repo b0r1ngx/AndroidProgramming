@@ -314,7 +314,11 @@ rUS-v27
     }
 ```
 
-Приложение полностью удовлетворяет своей работе, требуемой [по заданию](https://github.com/b0r1ngx/AndroidProgramming/blob/main/Lab02/lab02.md#%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-continuewatch).
+Приложение полностью удовлетворяет своей работе, требуемой [по заданию](https://github.com/b0r1ngx/AndroidProgramming/blob/main/Lab02/lab02.md#%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-continuewatch). (ниже небольшое превью, в скриншотах)
+
+![ContinueWatch-port](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss1_continuewatch.jpg "ContinueWatch-port")
+![ContinueWatch-land](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/ss2_continuewatch.jpg "ContinueWatch-land")
+
 
 ## Вывод
 По ходу работы достиг все цели и решил все задачи, выше описал вывод по своей работе, пройдемся кратко по каждому пункту:
