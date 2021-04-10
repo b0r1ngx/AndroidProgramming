@@ -9,22 +9,45 @@
 
 Библиотека имеет 2 режима работы normal и strict. 
 * **Normal mode** - обычный режим работы, без ограничений*
-* **Strict mode** - работает искусственное ограничение: в памяти нельзя хранить более **BibConfig#maxValid=20** записей одновременно. При извлечении **maxValid+1**-й записи 1-я извелеченная запись становится невалидной (при доступе к полям кидаются исключения). Это ограничение позволит быстрее выявлять ошибки при работе с **RecyclerView** и **адаптерами**.
+* **Strict mode** - работает искусственное ограничение: в памяти нельзя хранить более **BibConfig.java#maxValid=20** записей одновременно. При извлечении **maxValid+1**-й записи 1-я извелеченная запись становится невалидной (при доступе к полям кидаются исключения). Это ограничение позволит быстрее выявлять ошибки при работе с **RecyclerView** и **адаптерами**.
 
 ### Задача 1. Знакомство с библиотекой (при помощи написания unit test-ов)
-Ознакомьтесь со strict и shuffle mode библиотеки, проиллюстрировав его работу unit-тестами.
+Ознакомьтесь со #strict и #shuffle mode библиотеки, проиллюстрировав его работу unit-тестами.
 
 #### Указания
 * Изучите демонстрационное предложенную [библиотеку](biblib), уделите особое внимание файлу [BibDatabaseTest.java](biblib/src/test/java/name/ank/lab4/BibDatabaseTest.java). В этом файле тестируется (демонстрируется) создание библиотеки (**setup()**), чтение одной записи (**getFirstEntry()**) и normal mode ( **normalModeDoesNotThrowException()**). Посмотрите на пример [исходных данных](biblib/src/test/resources/references.bib), при необходимости загляните [внутрь библиотеки](biblib/src/main/java/name/ank/lab4).
 
-Действительно, заглянув в папку с реализацией библиотеки можно подробно понять, как она работает, а файл **BibDatabaseTest.java** - тестирует данную библиотеку, в некоторых ее особенностях.
+Действительно, заглянув в папку с реализацией библиотеки можно подробно понять, как она функционирует, а файл **BibDatabaseTest.java** - тестирует данную библиотеку, в некоторых ее особенностях.
 
 * Напишите несколько тестов с помощью которых вы можете сами себя проверить, что правильно поняли, как работает флаг **BibConfig#strict** и **BibConfig#shuffle** (в **BibDatabaseTest.java** оставлены шаблоны методов).
 
 Реализовали два теста:
-* **strictModeThrowsException()** - тестирует работу в режиме #strict
-* **shuffleFlag()** - тестируе работу с режимом #shuffle
+1. **strictModeThrowsException()** - тестирует работу в режиме #strict (ограничение на количество действительных экземпляров данных)
+```java
+  public void strictModeThrowsException() throws IOException {
+    BibDatabase database = openDatabase("/mixed.bib");
+    BibConfig cfg = database.getCfg();
+    cfg.strict = true;
+    boolean strictWorkedOff = false;
 
+    //Here we save link to a first entry, and loop to reach 21 entry of Database
+    BibEntry first = database.getEntry(0);
+    for (int i = 1; i < cfg.maxValid + 1; i++) {
+      BibEntry unused = database.getEntry(i);
+    }
+    //Here we try to knock at first entry
+    try {
+      first.getField(Keys.AUTHOR);
+    } catch (IllegalStateException e) {
+      strictWorkedOff = true;
+    }
+    assertTrue(strictWorkedOff);
+  }
+```
+3. **shuffleFlagInMixedBib()** - тестирует работу с включенным режимом #shuffle (перемешивает данные в базе данных)
+```java
+
+```
 
 * Соберите jar файл используя команду **./gradlew build**. Результаты сборки будут доступны по пути **build/libs/biblib.jar**. Обратите внимание, что сборка завершится ошибкой, если какие-либо тесты не проходят.
 
