@@ -47,8 +47,11 @@
 3. **shuffleFlagInMixedBib()** - тестирует работу с включенным режимом #shuffle (создавая БД, в переменную с перемешанными данными)
 ```java
   public void shuffleFlagInMixedBib() throws IOException {
-    BibDatabase firstShuffledDb = openDatabase("/mixed.bib");
-    BibDatabase secondShuffledDb = openDatabase("/mixed.bib");
+    BibConfig shuffleOnCfg = new BibConfig();
+    shuffleOnCfg.shuffle = true;
+
+    BibDatabase firstShuffledDb = openDatabaseOnCustomCfg("/mixed.bib", shuffleOnCfg);
+    BibDatabase secondShuffledDb = openDatabaseOnCustomCfg("/mixed.bib", shuffleOnCfg);
 
     boolean shuffleWorkedOff = false;
 
@@ -61,6 +64,14 @@
   assertTrue(shuffleWorkedOff);
   }
 ```
+Так как на Java не пишу, а default поля у методов, вроде как не задашь, реализовал доп. функцию, для открытия .bib с заданной конфигурацией
+```java
+  private BibDatabase openDatabaseOnCustomCfg(String s, BibConfig cfg) throws IOException {
+    try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream(s))) {
+      return new BibDatabase(reader, cfg);
+    }
+  }
+```
 
 * Соберите jar файл используя команду **./gradlew build**. Результаты сборки будут доступны по пути **build/libs/biblib.jar**. Обратите внимание, что сборка завершится ошибкой, если какие-либо тесты не проходят.
 
@@ -69,7 +80,7 @@
 ![Успешная сборка](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab04/images/build_success.png "Успешная сборка")
 
 ### Задача 2. Знакомство с RecyclerView.
-Напишите Android приложение, которое выводит все записи из bibtex файла на экран, используя предложенную библиотеку и `RecyclerView`. На выбор предлагается решить одну из двух задач: 
+Напишите Android приложение, которое выводит все записи из bibtex файла на экран, используя предложенную библиотеку и **RecyclerView**. На выбор предлагается решить одну из двух задач: 
 
 #### Задача 2.1. Однородный список (задача обычной сложности).
 В качестве исходных данных используйте файл [articles.bib](samples/articles.bib) . Обратите внимание, что все записи имеют одинаковый формат (@article).
@@ -77,15 +88,19 @@
 #### Задача 2.2*. Неоднородный список (задача повышенной сложности).
 В качестве исходных данных используйте файл [mixed.bib](samples/mixed.bib) . Обратите внимание, что записи имеют разный формат (@article, @misc, @inproceedings, etc). Используйте разное визуальное отображение для записей разного типа.
 
-
 #### Пояснения
 * При выводе записей не обязательно выводить все поля. Придумайте некоторый "адекватный" формат отображения данных. Выбор формата отображения поясните в отчете.
 * Записи можно выводить списком (list), сеткой (grid) или любым другим способом.
 
-#### Указания
-* Файлы с исходными данными скачайте и разместите в ресурсы приложения (`raw` ресурс).
-* Подключите библиотеку как зависимость на прекомпилированный jar файл (https://developer.android.com/studio/projects/android-library#AddDependency).
-* Ознакомьтесь с описанием RecyclerView (https://developer.android.com/guide/topics/ui/layout/recyclerview) и решите выбранную задачу. 
+### Решение задачи 2.1
+После ознакомления с классом [**RecyclerView**](https://developer.android.com/guide/topics/ui/layout/recyclerview) (являющийся наследником ViewGroup), размещением **arcticles.bib** в папку raw, ресурсов проекта и [подключением нашей библиотеке как зависимость на прекомпилированный jar файл](https://developer.android.com/studio/projects/android-library#AddDependency), перейдем к реализации задачи в приложении.
+
+![Успешный импорт в приложение](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab04/images/import_succes.png "Успешный импорт в приложение")
+
+*
+*
+*
+
 
 ### Задача 3. Бесконечный список.
 Сделайте список из предыдущей задачи бесконечным: после последнего элемента все записи повторяются, начиная с первой. 
