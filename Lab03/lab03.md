@@ -28,7 +28,7 @@ Codelabs, как и статья из документации знакомит 
 #### Задание
 Реализуйте навигацию между экранами одного приложения согласно эскизу с помощью **Activity, Intent и startActivityForResult()**.
 
-![эскиз](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab02/images/activities.png "эскиз")
+![Эскиз](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab03/images/activities.png "Эскиз")
 
 ### Задача 3. Навигация (флаги Intent/атрибуты Activity)
 #### Задание
