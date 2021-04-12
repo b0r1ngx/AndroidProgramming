@@ -93,12 +93,16 @@
 * Записи можно выводить списком (list), сеткой (grid) или любым другим способом.
 
 ### Решение задачи 2.1
-После ознакомления с классом [**RecyclerView**](https://developer.android.com/guide/topics/ui/layout/recyclerview) (являющийся наследником ViewGroup), размещением **arcticles.bib** в папку raw, ресурсов проекта и [подключением нашей библиотеке как зависимость на прекомпилированный jar файл](https://developer.android.com/studio/projects/android-library#AddDependency), перейдем к реализации задачи в приложении.
+После ознакомления с классом [**RecyclerView**](https://developer.android.com/guide/topics/ui/layout/recyclerview) (являющимся наследником ViewGroup), размещением **arcticles.bib** в папку raw, ресурсов проекта и [подключением нашей библиотеке как зависимость на прекомпилированный jar файл](https://developer.android.com/studio/projects/android-library#AddDependency), перейдем к реализации задачи в приложении.
 
 ![Успешный импорт в приложение](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab04/images/import_succes.png "Успешный импорт в приложение")
 
-*
-*
+Для того, чтобы использовать **RecyclerView**, нам нужно подготовить и исполнить несколько компонентов:
+* Сначало надо решиить, как будут выглядеть наши элементы
+
+LinearLayoutManager располагает элементы в одномерный список, я думаю это то, что нам надо.
+
+* 
 *
 
 
