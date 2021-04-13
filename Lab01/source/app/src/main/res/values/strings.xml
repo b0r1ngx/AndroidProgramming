@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lab01</string>
+    <string name="EditTextMessage">Text here please</string>
+    <string name="ButtonMessage">Apply</string>
+    <string name="TextViewMessage">What you want to see from me in this work</string>
+    <string name="TextView5">Как вы оцениваете мою работу?</string>
+    <string name="EditText6">Оставьте комментарии к выполненной работе</string>
+    <string name="CheckBox3">Проверка, что вы не робот</string>
+    <string name="Switch2On">Качественная</string>
+    <string name="Switch2Off">Не качественная</string>
+</resources>

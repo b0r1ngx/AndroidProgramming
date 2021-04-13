@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:text="@string/TextViewMessage"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/EditTextId"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:hint="@string/EditTextMessage"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/ButtonId"
+        android:onClick="onClick"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:text="@string/ButtonMessage"
+        />
+</LinearLayout>
