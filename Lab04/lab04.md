@@ -97,17 +97,102 @@
 
 ![Успешный импорт в приложение](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab04/images/import_succes.png "Успешный импорт в приложение")
 
-Для того, чтобы использовать **RecyclerView**, нам нужно подготовить и исполнить несколько компонентов:
-* Сначало надо решить, как будут выглядеть наши элементы
+По ходу прочтения документации к **RecyclerView**, говорится о том, что нам нужно подготовить и исполнить несколько компонентов, последовательно подготовим файлы:
 
-LinearLayoutManager располагает элементы в одномерный список, я думаю это то, что нам надо.
+Для начала добавим в **activity_main.xml** элемент ViewGroup **RecyclerView**, также как до этого добавляли другие элементы
+```xml
+  <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        ... />
+```
 
-* 
-*
+* **Реализация LayoutManager**, надо решить, как будут выглядеть наши элементы
 
+**LinearLayoutManager** располагает элементы в одномерный список, я думаю это то, что нам надо, определим соответсвующую переменную в **MainActivity#onCreate()**.
+```kotlin
+  val viewManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+```
+Так же, на этом шаге надо спроектировать макет индивидуального элемента, который будет входит в **RecyclerView**, сохраним его в папке res/layout
+
+![Дизайн индивидуального элемента](https://raw.githubusercontent.com/b0r1ngx/AndroidProgramming/main/Lab04/images/bibtex_item.xml.png "Дизайн индивидуального элемента")
+
+* **Реализация ViewHolder**, содержащий макет в виде кода для индивидуального элемента в будущем списке **RecyclerView**
+```kotlin
+  class BibTexViewHolder(itemView: View):
+        RecyclerView.ViewHolder(itemView) {
+        private val titleTextView = itemView.findViewById<TextView>(R.id.title)
+        private val authorTextView = itemView.findViewById<TextView>(R.id.author)
+        private val journalYearTextView = itemView.findViewById<TextView>(R.id.journal_n_year)
+
+        fun bind(entry: BibEntry) {
+            val title = parse(entry.getField(Keys.TITLE), 48)
+            val author = parse(entry.getField(Keys.AUTHOR), 47)
+            val journal = parse(entry.getField(Keys.JOURNAL), 41)
+            
+            titleTextView.text = "Title: $title"
+            authorTextView.text = "Author: $author"
+            journalYearTextView.text = "Journal: $journal, ${entry.getField(Keys.YEAR)}"
+        }
+
+        private fun parse(s: String, symbolsLimit: Int) =
+            if (s.length > symbolsLimit) "${s.substring(0, symbolsLimit)}..." else s
+    }
+```
+* **Реализация Adapter**, создает объекты **ViewHolder** по мере необходимости и устанавливает данные в каждый элемент **ViewHolder**
+```kotlin
+class ArticleAdapter(stream: InputStream):
+    RecyclerView.Adapter<ArticleAdapter.BibTexViewHolder>() {
+    private var database: BibDatabase
+
+    init {
+        InputStreamReader(stream).use { reader ->
+            database = BibDatabase(reader)
+        }
+    }
+    
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BibTexViewHolder =
+        BibTexViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.bibtex_item, parent, false)
+        )
+
+    override fun onBindViewHolder(holder: BibTexViewHolder, position: Int) =
+        holder.bind(database.getEntry(position))
+
+    override fun getItemCount(): Int =
+        database.size()
+}
+```
+
+[Процесс связывания представлений(Views) с их данными(data) называется привязкой(binding)]
 
 ### Задача 3. Бесконечный список.
 Сделайте список из предыдущей задачи бесконечным: после последнего элемента все записи повторяются, начиная с первой. 
 
 #### Указания
 * Модифицируйте код адаптера так, чтобы добиться желаемого поведения приложения
+
+При внимательном изучении документации к **RecyclerView** , можно заметить, что у **Adapter** есть метод, **getItemCount()**, который вызывается для того, чтобы получить размер набора данных, в связи с этим, установим достаточно большое число в возвращаемое число этой функции, а обращение к конкретному элементу подправим через операцию mod, таким образом, когда **RecyclerView** понадобиться отобразить элементы превышающее количество элементов в списке, мы начнем отображать список заново.
+
+Мне кажется иногда это может быть полезно, так что немного подправим Адаптер и его методы, таким образом, чтобы при создании класса, можно было явно указать хотим ли мы иметь дело с практически бесконечным списком
+```kotlin
+class ArticleAdapter(stream: InputStream, private val repeatInfinity: Boolean = false) {
+    private val Int.current: Int get() = this % database.size()
+
+    override fun onBindViewHolder(holder: BibTexViewHolder, position: Int) =
+        if (repeatInfinity) holder.bind(database.getEntry(position.current))
+        else holder.bind(database.getEntry(position))
+
+    override fun getItemCount(): Int =
+        if (repeatInfinity) 1488 * database.size() else database.size()
+```
+
+## Вывод
+По ходу работы достиг все цели и решил все задачи, выше описал выводы по своей работе, пройдемся кратко по каждому пункту:
+1. Научились импортировать сторонние библиотеки (в формате .JAR) в приложение, а также работать с ними в приложении
+2. Ознакомились с одним из видов adapter-based views (RecyclerView)
+3. Реализовали собственный Adapter, под нашу задачу, который работал как мост между Views и данными из библиотеки
+4. Вновь поработали с xml-форматом (layouts)
+
+[Дополнительные вопросы возникшие в ходе выполнения работы и решенные мной]
+* Были включены в соответствующие разделы заданий.
